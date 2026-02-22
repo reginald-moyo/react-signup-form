@@ -65,7 +65,7 @@
 .forgot-password {
     padding-left: 62px;
     margin-top: 27px;
-    color: rgb(154, 28, 163);
+    color: rgb(246, 242, 246);
     font-size: 18px;
 }
 
@@ -92,11 +92,32 @@
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .gray {
     background: #8d8181;
     color: bisque;
+}
+
+.password-criteria {
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.password-criteria ul {
+  padding-left: 20px;
+}
+
+.forgot-password span {
+  color: blue;
+  cursor: pointer;
+}
+
+.form-message {
+   color: red;
+   margin-top: 10px;
+
 }
 
 @media (max-width: 480px) {
