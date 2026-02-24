@@ -10,6 +10,7 @@ const LoginSignup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
 
   // Fake stored user (for demo login)
   const fakeUser = {
@@ -32,26 +33,32 @@ const LoginSignup = () => {
     if (action === "Login") {
       if (email !== fakeUser.email) {
         setMessage("User not found");
-        return;
+         setMessageType("error");
+        return false;
       }
 
       if (password !== fakeUser.password) {
         setMessage("Password entered incorrect");
-        return;
+         setMessageType("error");
+        return false;
       }
 
       setMessage("Login successful ✅");
+      setMessageType("success");
+      return true;
     }
 
     if (action === "Sign Up") {
       if (!passwordValidation.minLength) {
         setMessage("Password too short (minimum 8 characters)");
-        return;
+        setMessageType("error");
+        return false;
       }
 
       if (!passwordValidation.hasUppercase) {
         setMessage("Password must contain at least one uppercase letter");
-        return;
+        setMessageType("error");
+        return false;
       }
 
       if (!passwordValidation.hasNumber) {
@@ -60,6 +67,8 @@ const LoginSignup = () => {
       }
 
       setMessage("Account created successfully ✅ (demo only)");
+      setMessageType("success");
+      return true;
     }
   };
 
@@ -110,38 +119,52 @@ const LoginSignup = () => {
 
         {/* Password criteria (only show in Sign Up mode) */}
         {action === "Sign Up" && (
-          <div className="password-criteria">
-            <p>Password must contain:</p>
-            <ul>
-              <li style={{ color: passwordValidation.minLength ? "green" : "red" }}>
-                At least 8 characters
-              </li>
-              <li style={{ color: passwordValidation.hasUppercase ? "green" : "red" }}>
-                One uppercase letter
-              </li>
-              <li style={{ color: passwordValidation.hasNumber ? "green" : "red" }}>
-                One number
-              </li>
-            </ul>
+          <div className='password-criteria-container'>
+            <div className="password-criteria">
+              <p>Password must contain:</p>
+              <ul>
+                <li style={{ color: passwordValidation.minLength ? "green" : "red" }}>
+                  At least 8 characters
+                </li>
+                <li style={{ color: passwordValidation.hasUppercase ? "green" : "red" }}>
+                  One uppercase letter
+                </li>
+                <li style={{ color: passwordValidation.hasNumber ? "green" : "red" }}>
+                  One number
+                </li>
+              </ul>
+            </div>
           </div>
+          
         )}
       </div>
 
       {action === "Login" && (
         <div className="forgot-password">
-          Lost Password? <span onClick={handleForgotPassword}>Click here!</span>
+          <span onClick={handleForgotPassword}>Lost Password Click here!</span>
         </div>
       )}
-
+      
+      <div className='form-message-container'>
+        <div className="form-message" 
+          style={{color: messageType === "success" ? "green" : messageType === "error" ? "red" : "black",}}>
+          {message}
+      </div>
+      </div>
+      
       <div className="submit-container">
         <div
           className={action === "Login" ? "submit gray" : "submit"}
           onClick={() => {
-            setAction("Sign Up");
-            setMessage("");
+            if (action === "Sign Up") {
+              handleSubmit();
+              } else {
+                setAction("Sign Up");
+                setMessage("");
+              }
           }}
         >
-          Sign Up
+          {action === "Sign Up" ? "Create Account" : "Sign Up"}
         </div>
 
         <div
@@ -158,19 +181,6 @@ const LoginSignup = () => {
           Login
         </div>
       </div>
-
-      <div className="form-message" >
-        {message}
-      </div>
-
-      {action === "Sign Up" && (
-        <div
-          className="submit"
-          onClick={handleSubmit}
-        >
-          Create Account
-        </div>
-      )}
     </div>
   );
 };

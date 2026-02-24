@@ -77,7 +77,8 @@
 .submit-container {
     display: flex;
     gap: 30px;
-    margin: 60px auto;
+    margin-top: 50px;
+    margin-left: 35px;
 }
 
 .submit {
@@ -100,9 +101,18 @@
     color: bisque;
 }
 
+.password-criteria-container {
+  background-color: #6ad6e9;
+  width: 250px;
+  opacity: 80%;
+  border-radius: 50px;
+  margin-left: 50px;
+  
+}
 .password-criteria {
   font-size: 15px;
   margin-top: 10px;
+  margin-left: 40px;
 }
 
 .password-criteria ul {
@@ -110,13 +120,24 @@
 }
 
 .forgot-password span {
-  color: blue;
+  color: white;
   cursor: pointer;
 }
 
+.form-message-container {
+    background-color: #6ad6e9;
+   margin-top: 50px;
+   margin-left: 45px;
+   width: 400px;
+   border-radius: 50px;
+   height: 30px;
+   opacity: 90%;
+
+}
+
 .form-message {
-   color: red;
-   margin-top: 10px;
+  margin-left: 40px;
+  margin-top: 5px;
 
 }
 
