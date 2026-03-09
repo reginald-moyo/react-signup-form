@@ -145,12 +145,14 @@ const LoginSignup = () => {
         </div>
       )}
       
+      {message && (
       <div className='form-message-container'>
         <div className="form-message" 
           style={{color: messageType === "success" ? "green" : messageType === "error" ? "red" : "black",}}>
           {message}
+        </div>
       </div>
-      </div>
+      )}
       
       <div className="submit-container">
         <div
