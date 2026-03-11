@@ -142,7 +142,7 @@ const LoginSignup = () => {
       {action === "Login" && (
         <div className="forgot-password">
           <span onClick={handleForgotPassword}>Lost Password Click here!</span>
-        </div>
+        </div>      
       )}
       
       {message && (
@@ -183,6 +183,12 @@ const LoginSignup = () => {
           Login
         </div>
       </div>
+      {action === "Login" && (
+        <div className='log-details'>
+          <p>Demo LogIn Details: test@gmail.com | Password123</p>
+      </div>
+      )}
+      
     </div>
   );
 };
